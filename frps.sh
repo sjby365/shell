@@ -2,7 +2,6 @@
 echo -e "\033[32m Please input the path(Example:/usr/local/frp): \033[0m"
 read Dir
 yum -y install wget
-
 if [ -e $Dir ]; then
 #Folder name exists in system
 echo -e "\033[32m Ready to Install.   \033[0m"
@@ -11,12 +10,10 @@ else
 echo -e "\033[32m Create $Dir   \033[0m"
 mkdir -p $Dir 
 fi
-
 cd $Dir && wget http://mirror.cnop.net/frp/frp_0.13.0_linux_amd64.tar.gz
 tar -zxvf frp_0.13.0_linux_amd64.tar.gz && rm -rf frp_0.13.0_linux_amd64.tar.gz 
 mv $Dir/frp_0.13.0_linux_amd64/* ./ && rm -rf $Dir/frp_0.13.0_linux_amd64
 cd $Dir && rm -rf frpc frpc.ini 
-
 echo "
 [common]
 bind_port = 7000

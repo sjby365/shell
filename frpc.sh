@@ -9,7 +9,7 @@ cd $Dir && rm -rf frps frps.ini
 #/bin/bash
 echo "
 [common]
-server_addr = 23.105.195.48
+server_addr = 23.105.195.x
 server_port = 7000
 
 [ssh]
@@ -28,14 +28,18 @@ type = tcp
 local_port = 3307
 remote_port = 13306
 ">$Dir/frpc.ini
-echo "input local addr:"
+echo "Please input the service ip:"
+read s_ip
+sed -i "s@23.105.195.x@$s_ip@g" $Dir/frpc.ini
+
+echo "Please input the local addr:"
 read l_ip
 sed -i "s@192.168.20.126@$l_ip@g" $Dir/frpc.ini
-echo "input local mysql port:"
+echo "Please input the mysql port:"
 read mysql_port
 sed -i "s@3307@$mysql_port@g" $Dir/frpc.ini
 
-echo "input web port:"
+echo "Please input the web port:"
 read web_port
 sed -i "s@8181@$web_port@g" $Dir/frpc.ini
 echo "
